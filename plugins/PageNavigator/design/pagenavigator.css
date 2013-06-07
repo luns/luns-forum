@@ -1,0 +1,31 @@
+ .pagenavigator {
+    color: red; 
+    cursor: pointer;!important
+	}
+	
+.pagen {
+        cursor: pointer;!important
+         margin-left: 10px;
+         padding-right: 10px;
+         border:solid black 0px;
+        }
+        
+.pagens {
+        cursor: pointer;!important
+         margin-left: 35px;
+         padding-right: 30px;
+         border:solid black 0px;
+        }
+        
+.pntop  {
+         font-family: Serif;
+         cursor: pointer;!important
+         margin-left: 10px;
+         color: black; 
+        }    
+
+.pnbottom  {
+        font-family: Serif;
+        padding-left: 7px;
+        color: black; 
+        }    

@@ -1,0 +1,12 @@
+.kPollAnswer {
+    font-weight: bold;
+}
+
+.kPollArchive {
+    float: left;
+    width: 250px;
+    min-height: 250px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -1,0 +1,31 @@
+kPoll is a Poll Plugin for Vanilla2 (http://vanillaforums.org). It allows an Administrator (or anyone with Dashboard Access) to create a poll which will be displayed on the sidebar of the forum. Only users logged in can view and participate in the poll. Each user is allowed to vote once on any given poll.
+
+This initial release should be considered *BETA*. Please do not use in a production enviornment without testing first.
+
+REQUIREMENTS:
+Vanilla 2.0.18 (Older versions may work, but have not been tested). 
+
+INSTALLING:
+* Copy the entire kPoll folder to ./plugins/ located in the directory where Vanilla2 is installed.
+* Activate the kPoll plugin: Dashboard->Plugins
+
+CREATE A POLL:
+* To create a new Poll, ensure the kPoll plugin is activated.
+* Goto the kPoll administration page: Dashboard->kPoll.
+* Create a new poll. 
+
+RELEASE HISTORY:
+
+4/12/2011
+---------
+* Added Poll History to kPoll Dashboard page. This will show what each participating user voted for. 
+
+27/11/2011
+----------
+* Added a method to clear existing polls without creating a new poll. 
+* Added a seperate view for new poll creation.
+* Fixed issue where forum Dashboard would not be visible when in kPoll settings.
+
+17/11/2011
+----------
+Initial Release.

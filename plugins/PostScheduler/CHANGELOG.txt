@@ -1,0 +1,4 @@
+Post Scheduler for Vanilla Forums 2.0 - Change Log
+
+Version 13.01.19
+- Initial Release

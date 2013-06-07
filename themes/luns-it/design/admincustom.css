@@ -1,0 +1,18 @@
+/* 
+    Document   : admincustom
+    Created on : 06.06.2013, 13:43:11
+    Author     : SLunev
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.Box, .MessageForm, #Content, .Frame, #Head {
+    border-radius: 1px 1px 1px 1px;
+    background: none repeat scroll 0% 0% #f5f5f5;
+    color: rgb(136, 136, 136);
+    padding: 2px;
+    
+    box-shadow: 0px 0px 2px rgb(153, 153, 153);
+        text-align: left;
+}
+

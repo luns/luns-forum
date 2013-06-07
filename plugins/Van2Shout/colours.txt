@@ -1,0 +1,6 @@
+<?php
+
+$groupNames = array("Administrator", "Member", "RoleWithRedColour");
+$colourCodes = array("gold", "blue", "red");
+
+?>

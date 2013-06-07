@@ -1,0 +1,24 @@
+Install/Setup:
+
+1.	Move the 'NillaBlog' folder under the 'plugins' directory of your
+	vanilla	installation.
+
+2.	Enable the NillaBlog plugin found in the administration dashboard.
+
+3.	Configure the plugin.
+
+NillaBlog works by inserting css class names into various html
+elements in order to style them.  The plugin comes with a set of
+default styles.
+
+An option can be set to prevent default style injection if you have
+built your theme to support the css class names that the plugin uses.
+
+Two class names are currently used in this plugin.  'NillaBlog' and
+'NillaBlog#' where # is the Vanilla CategoryID of the blog category.
+You may use the latter class name in css when it is desired to style
+multiple blogs differently from one another.
+
+
+
+

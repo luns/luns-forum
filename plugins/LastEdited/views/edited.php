@@ -1,0 +1,1 @@
+﻿<div class="PostEdited"><?php echo sprintf(T('Отредактировал %1$s : %2$s'), $this->Edited['User'], $this->Edited['Date']); ?></div>
