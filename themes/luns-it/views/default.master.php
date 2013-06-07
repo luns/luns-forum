@@ -1,14 +1,16 @@
 <?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
 <!DOCTYPE html>
 <html lang="ru">
+
+
     <head>
         <?php $this->RenderAsset('Head'); ?>
 
         <link href="/forum/themes/luns-it/bootstrap/css/bootstrap.css" rel="stylesheet" >
         <link href="/forum/themes/luns-it/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         <script src="/forum/themes/luns-it/bootstrap/js/bootstrap.js"></script>
-
         <script src="/forum/themes/luns-it/tinymce/tinymce.min.js"></script>
+
 
 
         <script>

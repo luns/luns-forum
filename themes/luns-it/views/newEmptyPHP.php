@@ -5,4 +5,8 @@
  * and open the template in the editor.
  */
 
+/* @var $variable ClassName */
+function ($arg_num) {
+
+        }
 ?>
