@@ -15,7 +15,7 @@ if (!defined('APPLICATION'))
  * An associative array of information about this application.
  */
 $ThemeInfo['default'] = array(
-    'Name' => 'LUNS-IT',
+    'Name' => 'luns',
     'Description' => "для форума luns-it",
     'Version' => APPLICATION_VERSION,
     'Author' => "luns",

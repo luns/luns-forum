@@ -50,7 +50,20 @@ class LunsPlugin extends Gdn_Plugin {
     public function Base_Render_Before($Sender) {
         $Sender->AddCssFile($this->GetResource('design/main.css', FALSE, FALSE));
         $Sender->AddJsFile($this->GetResource('js/main.js', FALSE, FALSE));
+        $Sender->AddJsFile($this->GetResource('js/up.js', FALSE, FALSE));
     }
+
+    public function Base_AfterBody_Handler($Sender) {
+
+        //кнопка "вверх"
+        $String = '<a style="position: fixed; bottom: 2px; right: 75px; cursor:pointer; display:none;" href="#"
+        id="Go_Top"><img src="/forum/plugins/luns/design/up_button_6.png" alt="" title=""></a>';
+
+        echo $String;
+
+    }
+
+
 
     /**
      * Create a method called "Example" on the PluginController
@@ -71,28 +84,11 @@ class LunsPlugin extends Gdn_Plugin {
          * in the dashboard. Something like this works well: <h1><?php echo T($this->Data['Title']); ?></h1>
          */
         $Sender->Title('Luns');
-        $Sender->AddSideMenu('plugin/Luns');
+        $Sender->AddSideMenu('plugin/Luns', 'Garden.Settings.Manage');
 
         // If your sub-pages use forms, this is a good place to get it ready
         $Sender->Form = new Gdn_Form();
 
-        /*
-         * This method does a lot of work. It allows a single method (PluginController::Example() in this case) 
-         * to "forward" calls to internal methods on this plugin based on the URL's first parameter following the 
-         * real method name, in effect mimicing the functionality of as a real top level controller. 
-         *
-         * For example, if we accessed the URL: http://www.yourforum.com/plugin/Example/test, Dispatch() here would
-         * look for a method called ExamplePlugin::Controller_Test(), and invoke it. Similarly, we we accessed the
-         * URL: http://www.yourforum.com/plugin/Example/foobar, Dispatch() would find and call 
-         * ExamplePlugin::Controller_Foobar().
-         *
-         * The main benefit of this style of extending functionality is that all of a plugin's external API is 
-         * consolidated under one namespace, reducing the chance for random method name conflicts with other
-         * plugins. 
-         *
-         * Note: When the URL is accessed without parameters, Controller_Index() is called. This is a good place
-         * for a dashboard settings screen.
-         */
         $this->Dispatch($Sender, $Sender->RequestArgs);
     }
 
@@ -142,24 +138,11 @@ class LunsPlugin extends Gdn_Plugin {
      */
     public function Base_GetAppSettingsMenuItems_Handler($Sender) {
         $Menu = &$Sender->EventArguments['SideMenu'];
-        $Menu->AddLink('Add-ons', 'Luns (настройки)', 'plugin/Luns', 'Garden.AdminUser.Only');
+        $Menu->AddLink('Add-ons', 'Luns (настройки)', 'plugin/Luns', 'Garden.Settings.Manage');
     }
 
-    /**
-     * Hook into the rendering of each discussion link
-     *
-     * How did we find this event? We know we're trying to display a line of text when each discussion is rendered
-     * on the /discussions/ page. That page corresponds to the DiscussionsController::Index() method. This method,
-     * by default, renders the views/discussions/index.php view. That view contains this line:
-     *    <?php include($this->FetchViewLocation('discussions')); ?>
-     *
-     * So we look inside views/discussions/discussions.php. We find a loop the calls WriteDiscussion() for each 
-     * discussion in the list. WriteDiscussion() fires several events each time it is called. One of those events
-     * is called "AfterDiscussionTitle". Since we know that the parent controller context is "DiscussionsController",
-     * and that the event's name is "AfterDiscussionTitle", it is easy to see that our handler method should be called
-     *
-     *     DiscussionsController_AfterDiscussionTitle_Handler()
-     */
+
+
     public function DiscussionController_CommentOptions_Handler($Sender) {
         //$this->AddPostNum($Sender);
     }
@@ -268,10 +251,10 @@ class LunsPlugin extends Gdn_Plugin {
     }
 
     public function ProfileController_AfterPreferencesDefined_Handler($Sender) {
-        // if (Gdn::Session()->CheckPermission('Plugins.Flagging.Notify')) {
-        //  $Sender->Preferences['Luns']['Разное.Flag'] = T('Обновлять темы автоматически');
-        // $Sender->Preferences['Luns']['Разное.String'] = S('Время обновления');
-        // }
+         if (Gdn::Session()->CheckPermission('Plugins.Flagging.Notify')) {
+          $Sender->Preferences['Luns']['Разное.Flag'] = T('Обновлять темы автоматически');
+         $Sender->Preferences['Luns']['Разное.Int'] = T('Время обновления');
+         }
     }
 
 }
