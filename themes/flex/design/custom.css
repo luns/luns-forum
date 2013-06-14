@@ -1,0 +1,29 @@
+
+/*meta*/
+
+.options,.options li, .meta{
+    display: inline-block;
+    float: right;
+
+
+}
+
+.options li{
+
+    margin: 0 2px 0 2px;
+    padding: 0px;
+
+}
+
+.meta{
+
+
+}
+
+/*статистика в темах*/
+
+/*Popup*/
+
+.Popup{
+    text-align: center;
+}

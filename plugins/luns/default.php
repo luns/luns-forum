@@ -35,14 +35,14 @@ class LunsPlugin extends Gdn_Plugin {
      * as it runs every page load and could slow down your forum.
      */
     public function __construct() {
-        
+
     }
 
     /**
      * Base_Render_Before Event Hook
      *
-     * This is a common hook that fires for all controllers (Base), on the Render method (Render), just 
-     * before execution of that method (Before). It is a good place to put UI stuff like CSS and Javascript 
+     * This is a common hook that fires for all controllers (Base), on the Render method (Render), just
+     * before execution of that method (Before). It is a good place to put UI stuff like CSS and Javascript
      * inclusions. Note that all the Controller logic has already been run at this point.
      *
      * @param $Sender Sending controller instance
@@ -60,17 +60,14 @@ class LunsPlugin extends Gdn_Plugin {
         id="Go_Top"><img src="/forum/plugins/luns/design/up_button_6.png" alt="" title=""></a>';
 
         echo $String;
-
     }
-
-
 
     /**
      * Create a method called "Example" on the PluginController
      *
      * One of the most powerful tools at a plugin developer's fingertips is the ability to freely create
-     * methods on other controllers, effectively extending their capabilities. This method creates the 
-     * Example() method on the PluginController, effectively allowing the plugin to be invoked via the 
+     * methods on other controllers, effectively extending their capabilities. This method creates the
+     * Example() method on the PluginController, effectively allowing the plugin to be invoked via the
      * URL: http://www.yourforum.com/plugin/Example/
      *
      * From here, we can do whatever we like, including turning this plugin into a mini controller and
@@ -130,7 +127,7 @@ class LunsPlugin extends Gdn_Plugin {
 
     /**
      * Add a link to the dashboard menu
-     * 
+     *
      * By grabbing a reference to the current SideMenu object we gain access to its methods, allowing us
      * to add a menu link to the newly created /plugin/Example method.
      *
@@ -141,40 +138,55 @@ class LunsPlugin extends Gdn_Plugin {
         $Menu->AddLink('Add-ons', 'Luns (настройки)', 'plugin/Luns', 'Garden.Settings.Manage');
     }
 
-
-
     public function DiscussionController_CommentOptions_Handler($Sender) {
         //$this->AddPostNum($Sender);
     }
 
-    public function DiscussionsController_BeforeRenderAsset_Handler($Sender) {
+    function addSpanBefore($Sender) {
 
         $Session = Gdn::Session();
         if ($Sender->EventArguments['AssetName'] == 'Panel') {
-            echo ('<div class="span2">');
+            echo ('<div class="col_2">');
         } elseif ($Sender->EventArguments['AssetName'] == 'Content') {
             if ($Session->IsValid()) {
-                echo ('<div class="span10">');
+                echo ('<div class="col_10">');
             } else {
-                echo ('<div class="span12">');
+                echo ('<div class="col_12">');
             }
+        } elseif ($Sender->EventArguments['AssetName'] == 'Foot') {
+
+
+
+            echo ('<a href="http://luns-it.ru">luns-it.ru - 2013</a>');
         }
-        elseif ($Sender->EventArguments['AssetName'] == 'Foot') {
-            
-        
-          
-        echo ('<a href="http://luns-it.ru">luns-it.ru - 2013</a>');
     }
+
+    function addSpanAfter($Sender) {
+        if ($Sender->EventArguments['AssetName'] == 'Panel') {
+            echo ('</div>');
+        } elseif ($Sender->EventArguments['AssetName'] == 'Content') {
+            echo ('</div>');
+        }
+    }
+
+    public function DiscussionController_BeforeRenderAsset_Handler($Sender) {
+
+        $this->addSpanBefore($Sender);
+    }
+
+    public function DiscussionsController_BeforeRenderAsset_Handler($Sender) {
+
+        $this->addSpanBefore($Sender);
+    }
+
+    public function DiscussionController_AfterRenderAsset_Handler($Sender) {
+
+        $this->addSpanAfter($Sender);
     }
 
     public function DiscussionsController_AfterRenderAsset_Handler($Sender) {
 
-
-        if ($Sender->EventArguments['AssetName'] == 'Panel') {
-            echo ('</div>');
-        } elseif ($Sender->EventArguments['AssetName'] == 'Content') {
-            echo ('</div>');
-        }
+        $this->addSpanAfter($Sender);
     }
 
     public function DiscussionsController_DiscussionMeta_Handler($Sender) {
@@ -191,7 +203,7 @@ class LunsPlugin extends Gdn_Plugin {
         $TrimSize = 200;
 
         /*
-         * We're using this setting to allow conditional display of the excerpts. We have 3 settings: 'all', 'announcements', 
+         * We're using this setting to allow conditional display of the excerpts. We have 3 settings: 'all', 'announcements',
          * 'discussions'. They do what you'd expect!
          */
         $RenderCondition = C('Plugin.Luns.RenderCondition', 'all');
@@ -213,8 +225,8 @@ class LunsPlugin extends Gdn_Plugin {
     /**
      * Plugin setup
      *
-     * This method is fired only once, immediately after the plugin has been enabled in the /plugins/ screen, 
-     * and is a great place to perform one-time setup tasks, such as database structure changes, 
+     * This method is fired only once, immediately after the plugin has been enabled in the /plugins/ screen,
+     * and is a great place to perform one-time setup tasks, such as database structure changes,
      * addition/modification ofconfig file settings, filesystem changes, etc.
      */
     public function Setup() {
@@ -242,7 +254,7 @@ class LunsPlugin extends Gdn_Plugin {
     /**
      * Plugin cleanup
      *
-     * This method is fired only once, immediately before the plugin is disabled, and is a great place to 
+     * This method is fired only once, immediately before the plugin is disabled, and is a great place to
      * perform cleanup tasks such as deletion of unsued files and folders.
      */
     public function OnDisable() {
@@ -251,10 +263,10 @@ class LunsPlugin extends Gdn_Plugin {
     }
 
     public function ProfileController_AfterPreferencesDefined_Handler($Sender) {
-         if (Gdn::Session()->CheckPermission('Plugins.Flagging.Notify')) {
-          $Sender->Preferences['Luns']['Разное.Flag'] = T('Обновлять темы автоматически');
-         $Sender->Preferences['Luns']['Разное.Int'] = T('Время обновления');
-         }
+        if (Gdn::Session()->CheckPermission('Plugins.Flagging.Notify')) {
+            $Sender->Preferences['Luns']['Разное.Flag'] = T('Обновлять темы автоматически');
+            $Sender->Preferences['Luns']['Разное.Int'] = T('Время обновления');
+        }
     }
 
 }

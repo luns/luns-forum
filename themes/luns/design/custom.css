@@ -97,7 +97,7 @@ button {
 }
 
 .input.post {
-    width: 100%
+    width: 99.4%
 }
 
 .LunsDescription {
@@ -294,22 +294,18 @@ ul.token-input-list {
     text-align: center;
     right: 0px;
     left: 0px;
-    position: absolute !important;
+    position: relative  !important;
     bottom: 0 !important;
 }
 
-#Foot div {
-    margin: 0px auto 0px;
-    padding: 0px 0px;
-    width: auto
-}
+
 
 #Form_Password, #Form_Email, #Form_Name {
-    height: auto;
+    width: auto;
 }
 
 #Form_Search.prependedInput {
-    /*height: 30px*/
+    height: 30px
 }
 
 #HotLog_counter {

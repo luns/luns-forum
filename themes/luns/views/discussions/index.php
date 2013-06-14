@@ -7,7 +7,7 @@ include($this->FetchViewLocation('helper_functions', 'discussions', 'vanilla'));
 WriteFilterTabs($this);
 if ($this->DiscussionData->NumRows() > 0 || (isset($this->AnnounceData) && is_object($this->AnnounceData) && $this->AnnounceData->NumRows() > 0)) {
     ?>
-   
+
     <table class="table table-condensed table-bordered">
         <?php include($this->FetchViewLocation('discussions')); ?>
     </table>
